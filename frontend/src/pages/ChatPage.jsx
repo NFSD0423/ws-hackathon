@@ -91,7 +91,9 @@ const ChatPage = () => {
                   </div>
                   <div className="ml-1">
                     <div className="text-sm font-bold leading-5 text-gray-900">
-                      {new Date(message.sentAt).toTimeString()}
+                      {new Date(message.sendAt).toLocaleTimeString()}
+                      {console.log("esto es en el message", message)}
+                      {console.log("message.sendAt", message.sendAt)}
                     </div>
                   </div>
                 </div>
