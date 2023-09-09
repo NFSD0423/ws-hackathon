@@ -30,6 +30,7 @@ const ChatPage = () => {
     }
     ws.current.onmessage = (event) => {
       const data = JSON.parse(event.data);
+      console.log('mensaje', data)
       setMessages((_messages) => [..._messages, data]);
     };
     return () => {
@@ -85,9 +86,7 @@ const ChatPage = () => {
                   </div>
                   <div className="ml-1">
                     <div className="text-sm font-bold leading-5 text-gray-900">
-                      {new Date(message.sentAt).toLocaleTimeString(undefined, {
-                        timeStyle: "short",
-                      })}{" "}
+                      {new Date(message.sentAt).toTimeString().split(' ')[0]}
                     </div>
                   </div>
                 </div>
