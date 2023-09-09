@@ -3,6 +3,19 @@ import Layout from '../components/Layout'
 import { useParams } from 'react-router-dom'
 import '../style.css'
 
+const createAnimation = emoji => {
+  for (let i = 0; i<30; i++) {
+    const element = document.createElement('p');
+    element.innerText = emoji;
+    element.style.fontSize = `${(Math.random()*10).toFixed(0)}em`
+    element.style.marginTop = `-${(Math.random()*100).toFixed(0)}%`
+    element.style.marginLeft = `${(Math.random()*100).toFixed(0)}%`
+    element.className = 'emojianimated'
+    document.body.appendChild(element);
+    setTimeout(() => element.remove(), 5000);
+  }
+}
+
 const ChatPage = () => {
 
   const [messages, setMessages] = useState([]);
@@ -34,6 +47,7 @@ const ChatPage = () => {
       const data = JSON.parse(event.data);
       console.log('mensaje', data)
       setMessages((_messages) => [..._messages, data]);
+      createAnimation(data.body)
     };
     return () => {
       console.log("Cleaning up...");
@@ -90,14 +104,13 @@ const ChatPage = () => {
                   </div>
                   <div className="ml-1">
                     <div className="text-sm font-bold leading-5 text-gray-900">
-                      {new Date(message.sendAt).toLocaleTimeString()}
-                      {console.log("esto es en el message", message)}
-                      {console.log("message.sendAt", message.sendAt)}
+                      {currTime}
+
                     </div>
                   </div>
                 </div>
                 <div className="mt-1 text-sm font-semibold leading-5">
-                  <span className='emojis'>{message.body}</span>
+                  {message.body}
                 </div>
               </div>
             </div>

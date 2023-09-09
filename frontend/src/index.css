@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes slidein {
+    from {
+        transform: translateY(-100vh);
+    }
+
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+.emojianimated {
+    animation: slidein 5s;
+    position: fixed;
+}
+
+html {
+    height: 100vh;
+    overflow-y: hidden;
+}
