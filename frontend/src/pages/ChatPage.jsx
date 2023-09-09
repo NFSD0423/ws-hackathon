@@ -54,9 +54,11 @@ const ChatPage = () => {
 
   }
 
-  const emojis = () => {
-
-  }
+  const emojiRisas = '😂'
+  const emojiCorazon = '😍'
+  const emojiVomitar = '🤮'
+  const emojiCaca = '💩'
+  const emojiAplausos = '👏'
 
   return (
     <Layout>
@@ -111,7 +113,7 @@ const ChatPage = () => {
             disabled={!isConnectionOpen}
             className='botonemojis'
           >
-            enviando una A
+            {emojiRisas}
           </button>
         </div>
       </footer>
