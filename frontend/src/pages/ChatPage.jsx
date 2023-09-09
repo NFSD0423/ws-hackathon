@@ -78,7 +78,7 @@ const ChatPage = () => {
 
   return (
     <Layout>
-      <div id="chat-view-container" className="flex flex-col w-1/3">
+      <div id="chat-view-container" className="flex flex-col w-1/3" style={{ maxHeight: '500px', overflowY: 'auto', width: '40vw' }}>
         {messages.map((message, index) => (
           <div key={index} className={`my-3 rounded py-3 w-1/3 text-white ${message.sender === username ? "self-end bg-purple-600" : "bg-blue-600"
             }`}>
@@ -90,8 +90,6 @@ const ChatPage = () => {
                   </div>
                   <div className="ml-1">
                     <div className="text-sm font-bold leading-5 text-gray-900">
-
-                      {console.log({currTime})}
                       {currTime}
 
                     </div>
