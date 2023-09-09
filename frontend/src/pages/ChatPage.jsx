@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import Layout from '../components/Layout'
 import { useParams } from 'react-router-dom'
 import '../style.css'
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
 const ChatPage = () => {
 
@@ -97,7 +96,7 @@ const ChatPage = () => {
                   </div>
                 </div>
                 <div className="mt-1 text-sm font-semibold leading-5">
-                  {message.body}
+                  <span className='emojis'>{message.body}</span>
                 </div>
               </div>
             </div>

@@ -42,3 +42,7 @@
     transform: scale(1.2);
     box-shadow: 0 30px 45px -15px rgba(122, 209, 95, 0.65);
 }
+
+.emojis {
+    font-size: xx-large;
+}
