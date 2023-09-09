@@ -21,8 +21,9 @@ const ChatPage = () => {
     );
   };
 
+  const scrollTarget = useRef(null);
   useEffect(() => {
-    ws.current = new WebSocket("ws://localhost:8080");
+    ws.current = new WebSocket(window.location.href.includes('localhost') ? "ws://localhost:8080" : 'wss://ws-hackathon.onrender.com');
     ws.current.onopen = () => {
       console.log("Connection Opened");
       setConnectionOpen(true);
@@ -36,26 +37,6 @@ const ChatPage = () => {
       ws.current.close();
     }
   }, []);
-
-<<<<<<< HEAD
-  const scrollTarget = useRef(null);
-=======
-    useEffect(() => {
-        ws.current = new WebSocket(window.location.href.includes('localhost') ? "ws://localhost:8080" : 'wss://ws-hackathon.onrender.com');
-        ws.current.onopen = () => {
-            console.log("Connection Opened");
-            setConnectionOpen(true);
-        }
-        ws.current.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            setMessages((_messages) => [..._messages, data]);
-        };
-        return () => {
-            console.log("Cleaning up...");
-            ws.current.close();
-        }
-    }, []);
->>>>>>> ebd82b3daf91d9406fb1adff1bc15dedcd1ede55
 
   useEffect(() => {
     if (scrollTarget.current) {
