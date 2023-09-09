@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Layout from '../components/Layout'
 import { useParams } from 'react-router-dom'
 import '../style.css'
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
 const ChatPage = () => {
 
@@ -116,7 +117,7 @@ const ChatPage = () => {
             aria-label="Send"
             onClick={() => sendMessage(arrayEmojis[0].emoji)}
             disabled={!isConnectionOpen}
-            className='botonemojis'
+            className='botonemojis btn fb-btn'
           >
             {arrayEmojis[0].emoji}
           </button>
@@ -126,7 +127,7 @@ const ChatPage = () => {
             aria-label="Send"
             onClick={() => sendMessage(arrayEmojis[1].emoji)}
             disabled={!isConnectionOpen}
-            className='botonemojis'
+            className='botonemojis btn fb-btn'
           >
             {arrayEmojis[1].emoji}
           </button>
@@ -136,7 +137,7 @@ const ChatPage = () => {
             aria-label="Send"
             onClick={() => sendMessage(arrayEmojis[2].emoji)}
             disabled={!isConnectionOpen}
-            className='botonemojis'
+            className='botonemojis btn fb-btn'
           >
             {arrayEmojis[2].emoji}
           </button>
@@ -146,7 +147,7 @@ const ChatPage = () => {
             aria-label="Send"
             onClick={() => sendMessage(arrayEmojis[3].emoji)}
             disabled={!isConnectionOpen}
-            className='botonemojis'
+            className='botonemojis btn fb-btn'
           >
             {arrayEmojis[3].emoji}
           </button>

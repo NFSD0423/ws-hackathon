@@ -2,40 +2,43 @@
     max-height: 80vh;
 }
 
+.containerEmojis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .botonemojis {
-    border: 1px solid black;
     width: 20%;
     height: 20%;
     margin: 5%
 }
 
-.botonemojis {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
+.btn {
+    width: 100px;
+    height: 100px;
+    background-color: #fafafad0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2em;
+    margin-right: 1em;
     cursor: pointer;
-    border-radius: 5px;
+    transition: all 0.3s;
+    border-radius: 10px;
 }
 
-.botonemojis:focus {
-    outline: none;
+
+#fb {
+    color: #006fff;
+    text-shadow: 0 50px 50px #006fff;
 }
 
-.botonemojis.clicked {
-    animation: glow 1s ease-in-out;
+.btn.fb-btn {
+    box-shadow: 0 30px 30px -17px rgba(0, 111, 255, 0.53);
 }
 
-@keyframes glow {
-    0% {
-        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
-    }
-
-    50% {
-        box-shadow: 0 0 20px 10px rgba(0, 123, 255, 0);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
-    }
+.btn.fb-btn:hover {
+    transform: scale(1.2);
+    box-shadow: 0 30px 45px -15px rgba(122, 209, 95, 0.65);
 }
