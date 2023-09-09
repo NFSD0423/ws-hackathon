@@ -1,60 +1,82 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Layout from '../components/Layout'
 import { useParams } from 'react-router-dom'
-import sendIcon from '../components/sendIcon'
 
 const ChatPage = () => {
 
-    const [messages, setMessages] = useState([]);
-    const [isConnectionOpen, setConnectionOpen] = useState(false)
-    const [messageBody, setMessageBody] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [isConnectionOpen, setConnectionOpen] = useState(false)
+  const [messageBody, setMessageBody] = useState("");
 
-    const { username } = useParams();
-    const ws = useRef();
+  const { username } = useParams();
+  const ws = useRef();
 
-    const sendMessage = () => {
-        if(messageBody) {
-            ws.current.send(
-                JSON.stringify({
-                    sender: username,
-                    body: messageBody,
-                })
-            );
-            setMessageBody("");
-        }
+  const sendMessage = (emoji) => {
+
+    ws.current.send(
+      JSON.stringify({
+        sender: username,
+        body: emoji
+      })
+    );
+  };
+
+  const scrollTarget = useRef(null);
+  useEffect(() => {
+    ws.current = new WebSocket(window.location.href.includes('localhost') ? "ws://localhost:8080" : 'wss://ws-hackathon.onrender.com');
+    ws.current.onopen = () => {
+      console.log("Connection Opened");
+      setConnectionOpen(true);
+    }
+    ws.current.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setMessages((_messages) => [..._messages, data]);
     };
+    return () => {
+      console.log("Cleaning up...");
+      ws.current.close();
+    }
+  }, []);
 
-    useEffect(() => {
-        ws.current = new WebSocket(window.location.href.includes('localhost') ? "ws://localhost:8080" : 'wss://ws-hackathon.onrender.com');
-        ws.current.onopen = () => {
-            console.log("Connection Opened");
-            setConnectionOpen(true);
-        }
-        ws.current.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            setMessages((_messages) => [..._messages, data]);
-        };
-        return () => {
-            console.log("Cleaning up...");
-            ws.current.close();
-        }
-    }, []);
+  useEffect(() => {
+    if (scrollTarget.current) {
+      scrollTarget.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages.length]);
 
-    const scrollTarget = useRef(null);
 
-    useEffect(() => {
-        if(scrollTarget.current) {
-            scrollTarget.current.scrollIntoView({behavior: "smooth"});
-        }
-    }, [messages.length]);
+  const arrayEmojis = [
+
+    {
+      id: 1,
+      name: 'heart',
+      emoji: "😍",
+
+    },
+    {
+      id: 2,
+      name: 'vomit',
+      emoji: "🤮",
+    },
+    {
+      id: 3,
+      name: 'shit',
+      emoji: "💩",
+    },
+    {
+      id: 4,
+      name: 'clap',
+      emoji: "👏",
+
+    }
+  ]
 
   return (
     <Layout>
-        <div id="chat-view-container" className="flex flex-col w-1/3">
+      <div id="chat-view-container" className="flex flex-col w-1/3">
         {messages.map((message, index) => (
-          <div key={index} className={`my-3 rounded py-3 w-1/3 text-white ${
-            message.sender === username ? "self-end bg-purple-600" : "bg-blue-600"
-          }`}>
+          <div key={index} className={`my-3 rounded py-3 w-1/3 text-white ${message.sender === username ? "self-end bg-purple-600" : "bg-blue-600"
+            }`}>
             <div className="flex items-center">
               <div className="ml-2">
                 <div className="flex flex-row">
@@ -79,27 +101,50 @@ const ChatPage = () => {
         <div ref={scrollTarget} />
       </div>
       <footer className="w-1/3">
-        <p>
-          You are chatting as <span className="font-bold">{username}</span>
-        </p>
+        <h3>
+          Chiquitor <span className="font-bold">{username}</span>
+        </h3>
 
-        <div className="flex flex-row">
-          <input
-            id="message"
-            type="text"
-            className="w-full border-2 border-gray-200 focus:outline-none rounded-md p-2 hover:border-purple-400"
-            placeholder="Type your message here..."
-            value={messageBody}
-            onChange={(e) => setMessageBody(e.target.value)}
-            required
-          />
+        <div className="containerEmojis">
           <button
+            value={messageBody}
+            required
             aria-label="Send"
-            onClick={sendMessage}
-            className="m-3"
+            onClick={() => sendMessage(arrayEmojis[0].emoji)}
             disabled={!isConnectionOpen}
+            className='botonemojis'
           >
-            {sendIcon}
+            {arrayEmojis[0].emoji}
+          </button>
+          <button
+            value={messageBody}
+            required
+            aria-label="Send"
+            onClick={() => sendMessage(arrayEmojis[1].emoji)}
+            disabled={!isConnectionOpen}
+            className='botonemojis'
+          >
+            {arrayEmojis[1].emoji}
+          </button>
+          <button
+            value={messageBody}
+            required
+            aria-label="Send"
+            onClick={() => sendMessage(arrayEmojis[2].emoji)}
+            disabled={!isConnectionOpen}
+            className='botonemojis'
+          >
+            {arrayEmojis[2].emoji}
+          </button>
+          <button
+            value={messageBody}
+            required
+            aria-label="Send"
+            onClick={() => sendMessage(arrayEmojis[3].emoji)}
+            disabled={!isConnectionOpen}
+            className='botonemojis'
+          >
+            {arrayEmojis[3].emoji}
           </button>
         </div>
       </footer>
