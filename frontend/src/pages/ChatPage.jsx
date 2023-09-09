@@ -19,6 +19,7 @@ const ChatPage = () => {
         body: emoji
       })
     );
+    console.log(Date)
   };
 
   const scrollTarget = useRef(null);
@@ -71,6 +72,8 @@ const ChatPage = () => {
     }
   ]
 
+  const currTime = new Date().toLocaleTimeString();
+
   return (
     <Layout>
       <div id="chat-view-container" className="flex flex-col w-1/3">
@@ -85,9 +88,8 @@ const ChatPage = () => {
                   </div>
                   <div className="ml-1">
                     <div className="text-sm font-bold leading-5 text-gray-900">
-                      {new Date(message.sentAt).toLocaleTimeString(undefined, {
-                        timeStyle: "short",
-                      })}{" "}
+                      {console.log({currTime})}
+                      {currTime}
                     </div>
                   </div>
                 </div>
