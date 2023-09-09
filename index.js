@@ -1,6 +1,10 @@
-import {WebSocketServer} from 'ws'
+import { WebSocketServer } from 'ws'
+import express from 'express'
 
-const server = new WebSocketServer({port: 8080}, () => console.log('Server started'))
+const app = express();
+const wsServer = new WebSocketServer({ noServer: true });
+
+app.use(express.static('frontend/build'))
 
 const users = new Set();
 
@@ -10,14 +14,14 @@ function sendMessage(message) {
     })
 }
 
-server.on('connection', (ws) => {
-    const userRef = {ws}
+wsServer.on('connection', (ws) => {
+    const userRef = { ws }
     users.add(userRef)
     ws.on('message', (message) => {
         console.log(message);
         try {
             const data = JSON.parse(message);
-            if(typeof data.sender !== 'string' || typeof data.body !== 'string'){
+            if (typeof data.sender !== 'string' || typeof data.body !== 'string') {
                 console.error('Invalid message');
                 return
             }
@@ -29,7 +33,7 @@ server.on('connection', (ws) => {
             }
 
             sendMessage(messageToSend)
-        } catch(e) {
+        } catch (e) {
             console.error('Error parsing message', e)
         }
     });
@@ -37,4 +41,12 @@ server.on('connection', (ws) => {
         users.delete(userRef);
         console.log(`Connection closed: ${code} ${reason}!`);
     })
+});
+
+const server = app.listen(8080);
+
+server.on('upgrade', (request, socket, head) => {
+    wsServer.handleUpgrade(request, socket, head, socket => {
+        wsServer.emit('connection', socket, request);
+    });
 });
