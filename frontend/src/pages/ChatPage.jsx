@@ -25,7 +25,7 @@ const ChatPage = () => {
     };
 
     useEffect(() => {
-        ws.current = new WebSocket("ws://localhost:8080");
+        ws.current = new WebSocket(window.location.href.includes('localhost') ? "ws://localhost:8080" : 'ws://ws-hackathon.onrender.com');
         ws.current.onopen = () => {
             console.log("Connection Opened");
             setConnectionOpen(true);
