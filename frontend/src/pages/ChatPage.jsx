@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Layout from '../components/Layout'
 import { useParams } from 'react-router-dom'
-import sendIcon from '../components/sendIcon'
 
 const ChatPage = () => {
 
@@ -12,16 +11,14 @@ const ChatPage = () => {
   const { username } = useParams();
   const ws = useRef();
 
-  const sendMessage = () => {
-    if (messageBody) {
-      ws.current.send(
-        JSON.stringify({
-          sender: username,
-          body: messageBody,
-        })
-      );
-      setMessageBody("");
-    }
+  const sendMessage = (emoji) => {
+
+    ws.current.send(
+      JSON.stringify({
+        sender: username,
+        body: emoji
+      })
+    );
   };
 
   useEffect(() => {
@@ -48,17 +45,32 @@ const ChatPage = () => {
     }
   }, [messages.length]);
 
-  const smsandsend = () => {
-    setMessageBody('a')
-    sendMessage()
 
-  }
+  const arrayEmojis = [
 
-  const emojiRisas = '😂'
-  const emojiCorazon = '😍'
-  const emojiVomitar = '🤮'
-  const emojiCaca = '💩'
-  const emojiAplausos = '👏'
+    {
+      id: 1,
+      name: 'heart',
+      emoji: "😍",
+
+    },
+    {
+      id: 2,
+      name: 'vomit',
+      emoji: "🤮",
+    },
+    {
+      id: 3,
+      name: 'shit',
+      emoji: "💩",
+    },
+    {
+      id: 4,
+      name: 'clap',
+      emoji: "👏",
+
+    }
+  ]
 
   return (
     <Layout>
@@ -90,30 +102,50 @@ const ChatPage = () => {
         <div ref={scrollTarget} />
       </div>
       <footer className="w-1/3">
-        <p>
-          You are chatting as <span className="font-bold">{username}</span>
-        </p>
+        <h3>
+          Chiquitor <span className="font-bold">{username}</span>
+        </h3>
 
-        <div className="flex flex-row">
-          {/* <input
-            id="message"
-            type="text"
-            className="w-full border-2 border-gray-200 focus:outline-none rounded-md p-2 hover:border-purple-400"
-            placeholder="Type your message here..."
-            value={messageBody}
-            onChange={(e) => setMessageBody(e.target.value)}
-            required
-          /> */}
+        <div className="containerEmojis">
           <button
             value={messageBody}
             required
             aria-label="Send"
-            onClick={smsandsend}
-            // className="m-3"
+            onClick={() => sendMessage(arrayEmojis[0].emoji)}
             disabled={!isConnectionOpen}
             className='botonemojis'
           >
-            {emojiRisas}
+            {arrayEmojis[0].emoji}
+          </button>
+          <button
+            value={messageBody}
+            required
+            aria-label="Send"
+            onClick={() => sendMessage(arrayEmojis[1].emoji)}
+            disabled={!isConnectionOpen}
+            className='botonemojis'
+          >
+            {arrayEmojis[1].emoji}
+          </button>
+          <button
+            value={messageBody}
+            required
+            aria-label="Send"
+            onClick={() => sendMessage(arrayEmojis[2].emoji)}
+            disabled={!isConnectionOpen}
+            className='botonemojis'
+          >
+            {arrayEmojis[2].emoji}
+          </button>
+          <button
+            value={messageBody}
+            required
+            aria-label="Send"
+            onClick={() => sendMessage(arrayEmojis[3].emoji)}
+            disabled={!isConnectionOpen}
+            className='botonemojis'
+          >
+            {arrayEmojis[3].emoji}
           </button>
         </div>
       </footer>
