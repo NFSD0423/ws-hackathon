@@ -84,21 +84,50 @@ const ChatPage = () => {
         </p>
 
         <div className="flex flex-row">
-          <input
-            id="message"
-            type="text"
-            className="w-full border-2 border-gray-200 focus:outline-none rounded-md p-2 hover:border-purple-400"
-            placeholder="Type your message here..."
-            value={messageBody}
-            onChange={(e) => setMessageBody(e.target.value)}
-            required
-          />
+          
           <button
             aria-label="Send"
             onClick={sendMessage}
             className="m-3"
             disabled={!isConnectionOpen}
           >
+            👏
+            {sendIcon}
+          </button>
+          <button
+            aria-label="Send"
+            onClick={sendMessage}
+            className="m-3"
+            disabled={!isConnectionOpen}
+          >
+            👏
+            {sendIcon}
+          </button>
+          <button
+            aria-label="Send"
+            onClick={sendMessage}
+            className="m-3"
+            disabled={!isConnectionOpen}
+          >
+            👏
+            {sendIcon}
+          </button>
+          <button
+            aria-label="Send"
+            onClick={sendMessage}
+            className="m-3"
+            disabled={!isConnectionOpen}
+          >
+            👏
+            {sendIcon}
+          </button>
+          <button
+            aria-label="Send"
+            onClick={sendMessage}
+            className="m-3"
+            disabled={!isConnectionOpen}
+          >
+            👏
             {sendIcon}
           </button>
         </div>
