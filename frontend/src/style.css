@@ -1,0 +1,44 @@
+#chat-view-container {
+    max-height: 80vh;
+}
+
+.containerEmojis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botonemojis {
+    width: 20%;
+    height: 20%;
+    margin: 5%
+}
+
+.btn {
+    width: 100px;
+    height: 100px;
+    background-color: #fafafad0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2em;
+    margin-right: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 10px;
+}
+
+
+#fb {
+    color: #006fff;
+    text-shadow: 0 50px 50px #006fff;
+}
+
+.btn.fb-btn {
+    box-shadow: 0 30px 30px -17px rgba(0, 111, 255, 0.53);
+}
+
+.btn.fb-btn:hover {
+    transform: scale(1.2);
+    box-shadow: 0 30px 45px -15px rgba(122, 209, 95, 0.65);
+}

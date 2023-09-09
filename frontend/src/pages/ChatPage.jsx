@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Layout from '../components/Layout'
 import { useParams } from 'react-router-dom'
+import '../style.css'
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
 const ChatPage = () => {
 
@@ -77,7 +79,7 @@ const ChatPage = () => {
 
   return (
     <Layout>
-      <div id="chat-view-container" className="flex flex-col w-1/3">
+      <div id="chat-view-container" className="flex flex-col w-1/3" style={{ height: '30vh', overflowY: 'auto', width: '40vw' }}>
         {messages.map((message, index) => (
           <div key={index} className={`my-3 rounded py-3 w-1/3 text-white ${message.sender === username ? "self-end bg-purple-600" : "bg-blue-600"
             }`}>
@@ -89,8 +91,6 @@ const ChatPage = () => {
                   </div>
                   <div className="ml-1">
                     <div className="text-sm font-bold leading-5 text-gray-900">
-
-                      {console.log({currTime})}
                       {currTime}
 
                     </div>
@@ -117,7 +117,7 @@ const ChatPage = () => {
             aria-label="Send"
             onClick={() => sendMessage(arrayEmojis[0].emoji)}
             disabled={!isConnectionOpen}
-            className='botonemojis'
+            className='botonemojis btn fb-btn'
           >
             {arrayEmojis[0].emoji}
           </button>
@@ -127,7 +127,7 @@ const ChatPage = () => {
             aria-label="Send"
             onClick={() => sendMessage(arrayEmojis[1].emoji)}
             disabled={!isConnectionOpen}
-            className='botonemojis'
+            className='botonemojis btn fb-btn'
           >
             {arrayEmojis[1].emoji}
           </button>
@@ -137,7 +137,7 @@ const ChatPage = () => {
             aria-label="Send"
             onClick={() => sendMessage(arrayEmojis[2].emoji)}
             disabled={!isConnectionOpen}
-            className='botonemojis'
+            className='botonemojis btn fb-btn'
           >
             {arrayEmojis[2].emoji}
           </button>
@@ -147,7 +147,7 @@ const ChatPage = () => {
             aria-label="Send"
             onClick={() => sendMessage(arrayEmojis[3].emoji)}
             disabled={!isConnectionOpen}
-            className='botonemojis'
+            className='botonemojis btn fb-btn'
           >
             {arrayEmojis[3].emoji}
           </button>
