@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Layout from '../components/Layout'
 import { useParams } from 'react-router-dom'
+import '../style.css'
 
 const ChatPage = () => {
 

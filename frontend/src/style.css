@@ -1,0 +1,41 @@
+#chat-view-container {
+    max-height: 80vh;
+}
+
+.botonemojis {
+    border: 1px solid black;
+    width: 20%;
+    height: 20%;
+    margin: 5%
+}
+
+.botonemojis {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.botonemojis:focus {
+    outline: none;
+}
+
+.botonemojis.clicked {
+    animation: glow 1s ease-in-out;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+    }
+
+    50% {
+        box-shadow: 0 0 20px 10px rgba(0, 123, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+    }
+}
