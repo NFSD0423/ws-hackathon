@@ -31,6 +31,7 @@ const ChatPage = () => {
     }
     ws.current.onmessage = (event) => {
       const data = JSON.parse(event.data);
+      console.log('mensaje', data)
       setMessages((_messages) => [..._messages, data]);
     };
     return () => {
@@ -88,8 +89,10 @@ const ChatPage = () => {
                   </div>
                   <div className="ml-1">
                     <div className="text-sm font-bold leading-5 text-gray-900">
+
                       {console.log({currTime})}
                       {currTime}
+
                     </div>
                   </div>
                 </div>
